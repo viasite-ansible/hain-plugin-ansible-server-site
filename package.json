@@ -14,8 +14,10 @@
     "url": "git+https://github.com/viasite-ansible/hain-plugin-ansible-server-site.git"
   },
   "keywords": [
+    "hain-0.5.0",
     "hain-0.6.0",
     "hain-plugin",
+    "ansible-server",
     "putty"
   ],
   "author": "Stanislav Popov <popstas@gmail.com>",
