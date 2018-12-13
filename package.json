@@ -1,0 +1,36 @@
+{
+  "name": "hain-plugin-ansible-server-site",
+  "version": "0.0.1",
+  "description": "A Hain plugin to open ansible-server sites in Putty",
+  "main": "index.js",
+  "scripts": {
+    "version": "npm run changelog && git add CHANGELOG.md",
+    "postversion": "git push && npm run release && npm publish",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "release": "conventional-github-releaser -p angular"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viasite-ansible/hain-plugin-ansible-server-site.git"
+  },
+  "keywords": [
+    "hain-0.6.0",
+    "hain-plugin",
+    "putty"
+  ],
+  "author": "Stanislav Popov <popstas@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/viasite-ansible/hain-plugin-ansible-server-site/issues"
+  },
+  "homepage": "https://github.com/viasite-ansible/hain-plugin-ansible-server-site",
+  "hain": {
+    "prefix": "/site",
+    "usage": "/site mysite.com",
+    "redirect": "/site ",
+    "icon": "#fa fa-chevron-right"
+  },
+  "dependencies": {
+    "got": "^8.3.1"
+  }
+}
