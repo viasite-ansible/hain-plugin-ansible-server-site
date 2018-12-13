@@ -1,5 +1,10 @@
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/viasite-ansible/hain-plugin-ansible-server-site/compare/v0.1.0...v0.1.1) (2018-12-13)
+
+
+
 <a name="0.1.0"></a>
-# 0.1.0 (2018-12-13)
+# [0.1.0](https://github.com/viasite-ansible/hain-plugin-ansible-server-site/compare/209efdb...v0.1.0) (2018-12-13)
 
 
 ### Features
