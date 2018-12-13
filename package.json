@@ -1,6 +1,6 @@
 {
   "name": "hain-plugin-ansible-server-site",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A Hain plugin to open ansible-server sites in Putty",
   "main": "index.js",
   "scripts": {
