@@ -1,14 +1,16 @@
 # hain-plugin-ansible-server-site
 
-Открывает сайты ansible-server в putty.
+Open ansible-server sites in putty.
 
-## Требования
-- вы должны работать в @viasite
-- putty.exe должен быть доступен глобально (должен лежать в папке, которая есть в %PATH%)
-- putty будет запускать сессию Default settings, ее надо настроить вручную:
-- установить шрифт [DejaVu Sans Mono for Powerline](https://github.com/powerline/fonts/blob/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf?raw=true), чтобы нормально отображались все символы в ansible-role-zsh строке
+[Russian readme](README_RU.md)
 
-### Рекомендуемые настройки Default session:
+## Requirements
+- it highly depends of usage [ansible-server](https://github.com/viasite-ansible/ansible-server)
+- putty.exe should be placed in %PATH% directory
+- putty will use Default settings, you should configure it
+- install font [DejaVu Sans Mono for Powerline](https://github.com/powerline/fonts/blob/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf?raw=true)
+
+### Recommended Default session settings:
 
 ```
 Window
@@ -27,19 +29,19 @@ Window
                 Allow agent forwarding: yes
 ```
 
-## Установка
+## Install
 
-### Через hpm:
+### hpm:
 ```
 /hpm install hain-plugin-ansible-server-site
 ```
 
-### Для разработчиков:
-Скопировать в `%LOCALAPPDATA%\hain-user\devplugins\hain-plugin-ansible-server-site`:
+### From Git:
+Copy source to `%LOCALAPPDATA%\hain-user\devplugins\hain-plugin-ansible-server-site`:
 
 ```
 git clone https://github.com/viasite-ansible/hain-plugin-ansible-server-site "%LOCALAPPDATA%\hain-user\devplugins\hain-plugin-ansible-server-site"
 ```
 
-Перезапустить Hain.
-Должна заработать команда `/site`.
+Restart Hain.
+Command `/site` should appear.
