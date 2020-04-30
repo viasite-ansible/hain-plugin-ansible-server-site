@@ -9,6 +9,10 @@ function loadJson(url){
 module.exports = (pluginContext) => {
   const logger = pluginContext.logger;
   const exec = require('child_process').exec;
+  const localStorage = pluginContext.localStorage;
+
+  let lastSelectedLimit = 5;
+  let lastSelected = localStorage.getItem('lastSelected') || [];
 
   var stored_sites = [];
 
@@ -46,9 +50,38 @@ module.exports = (pluginContext) => {
         return found;
       }
     }
+    // MRU
+    else if(lastSelected.length > 0){
+      lastSelected = localStorage.getItem('lastSelected') || [];
+      lastSelected.forEach(item => {
+        res.add({
+          id: 'session',
+          title: item.domain, //punycode.toUnicode(item.domain),
+          payload: item,
+          desc: item.host + (item.group ? ' / ' + item.group : ''),
+          icon: '#fa fa-chevron-right'
+          });
+      });
+
+      // divider
+      res.add({
+        id: '',
+        title: '-----------------------',
+        payload: '',
+        icon: '#fa '
+      });
+    }
 
     let filtered = stored_sites.filter(item => {
       return item.domain.toLowerCase().search(query) >= 0
+    });
+
+    filtered.sort((a, b) => {
+      let aBegin = a.domain.toLowerCase().startsWith(query.toLowerCase()) ? true : false;
+      let bBegin = b.domain.toLowerCase().startsWith(query.toLowerCase()) ? true : false;
+      if(aBegin && !bBegin) return -1;
+      if(!aBegin && bBegin) return 1;
+      return 0;
     });
 
     filtered.forEach(item => {
@@ -80,6 +113,25 @@ module.exports = (pluginContext) => {
 
   }
 
+  function updateLastSelected(payload) {
+    const limit = parseInt(lastSelectedLimit);
+
+    if (!payload) {
+      return;
+    }
+
+    logger.log('lastSelected:', lastSelected);
+
+    lastSelected = lastSelected
+      .filter(session => session.domain != payload.domain) // remove duplicate
+      // .filter(session => stored_sites.indexOf(session) != -1); // remove old values
+
+    lastSelected.unshift(payload); // add new session
+    lastSelected = lastSelected.slice(0, limit); // limit
+    localStorage.setItem('lastSelected', lastSelected);
+    logger.log('lastSelected:', lastSelected);
+  }
+
   function execute(id, payload) {
     
     logger.log("id: " + id, "payload: " + payload);
@@ -92,6 +144,7 @@ module.exports = (pluginContext) => {
       break;
 
       case 'session':
+        updateLastSelected(payload);
         exec('START putty ' + payload.user + '@' + payload.host);
       break;
 
