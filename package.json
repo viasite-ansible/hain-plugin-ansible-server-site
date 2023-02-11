@@ -33,6 +33,6 @@
     "icon": "#fa fa-chevron-right"
   },
   "dependencies": {
-    "got": "^8.3.1"
+    "got": "^12.5.3"
   }
 }
